@@ -51,11 +51,9 @@ object Packages {
 
     fun installAll() {
         for (pack in allPackages) {
-            if (pack.process != null) {
-                pack.process?.let { it(pack.packageName) }?.getSudoCommand()
-            } else {
-                pack.customCommand?.getSudoCommand()
-            }
+            if (pack.process != null) pack.process?.let { it(pack.packageName) }?.getSudoCommand()
+            else pack.customCommand?.getSudoCommand()
+            println()
         }
     }
 }

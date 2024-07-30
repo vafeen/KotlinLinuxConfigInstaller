@@ -4,26 +4,31 @@ object Commands {
     // removing help on f1
     private val YELP_REMOVE = Command(
         text = "sudo rm /usr/bin/yelp",
+        comment = "Removing help",
         sudo = true
     )
 
     //     enable dark theme
     private val ENABLE_DARK_THEME = Command(
-        text = "gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark"
+        text = "gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark",
+        comment = "Change theme",
     )
 
     //autorun for Flameshot, and also put prtscr on this file
     private val flameshotAutoRun = Command(
-        text = "chmod +x /home/a/MYSPACE/myBin/flameshot.sh"
+        text = "chmod +x /home/a/MYSPACE/myBin/flameshot.sh",
+        comment = "Make flameshot.sh executable",
     )
 
     private val GIT_CONFIG = Command(
         text = "git config --global user.name \"Vafeen\"\n" +
-                "git config --global user.email \"666av6@gmail.com\"\n"
+                "git config --global user.email \"666av6@gmail.com\"",
+        comment = "Update git config",
     )
 
     private val LANGUAGE_IN_EVERY_WINDOW = Command(
-        text = "gsettings set org.gnome.desktop.input-sources per-window true\n"
+        text = "gsettings set org.gnome.desktop.input-sources per-window true",
+        comment = "Add language in every window",
     )
     private val homeDirCall = "\$HOME"
     private val RENAMING_DIRS = Command(
@@ -68,11 +73,18 @@ object Commands {
         EOF
 
         code ~/.config/user-dirs.dirs
-    """.trimIndent()
+    """.trimIndent(),
+        comment = "Renaming default dirs",
     )
 
     private val WARP_TERMINAL_AS_DEFAULT_TERMINAL =
-        Command(text = "gsettings set org.cinnamon.desktop.default-applications.terminal exec warp-terminal")
+        Command(
+            text = "gsettings set org.cinnamon.desktop.default-applications.terminal exec warp-terminal",
+            comment = "Make warp is default terminal",
+        )
+
+    private val WARP_TERMINAL_AS_DEFAULT_TERMINAL2 =
+        Command(text = "sudo update-alternatives --config warp-terminal", comment = "Make warp is default terminal")
 
     private val allCommands = listOf(
         YELP_REMOVE,
@@ -81,13 +93,18 @@ object Commands {
         GIT_CONFIG,
         LANGUAGE_IN_EVERY_WINDOW,
         RENAMING_DIRS,
-        WARP_TERMINAL_AS_DEFAULT_TERMINAL
+        WARP_TERMINAL_AS_DEFAULT_TERMINAL,
+        WARP_TERMINAL_AS_DEFAULT_TERMINAL2
     )
+
 
     fun runAllCommands() {
         for (command in allCommands) {
+            command.comment.printComment()
             if (command.sudo) command.text.getSudoCommand()
             else command.text.getUserCommand()
+            println("\n")
+
         }
     }
 }
