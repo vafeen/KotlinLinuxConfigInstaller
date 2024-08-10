@@ -23,7 +23,6 @@ object Packages {
     private var EDGE = Package(name = "com.microsoft.Edge", process = Installer.FLATPAK::install)
     private var TG_DESKTOP = Package(name = "org.telegram.desktop", process = Installer.FLATPAK::install)
     private var JADX = Package(name = "com.github.skylot.jadx", process = Installer.FLATPAK::install)
-    private var WHATSAPP = Package(name = "com.github.eneshecan.WhatsAppForLinux", process = Installer.FLATPAK::install)
     private var RESOURCES = Package(name = "net.nokyan.Resources", process = Installer.FLATPAK::install)
     private var ONLYOFFICE = Package(name = "org.onlyoffice.desktopeditors", process = Installer.FLATPAK::install)
     private var INTELLIJ_IDEA = Package(name = "intellij-idea-community --classic", process = Installer.SNAP::install)
@@ -43,7 +42,6 @@ object Packages {
         EDGE,
         TG_DESKTOP,
         JADX,
-        WHATSAPP,
         RESOURCES,
         ONLYOFFICE,
         INTELLIJ_IDEA,
